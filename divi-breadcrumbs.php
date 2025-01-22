@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Breadcrumbs Divi Module
-Plugin URI:  http://www.learnhowwp.com/divi-breadcrumbs-module
-Description: The plugin adds a new module, the Breadcrumbs module in the Divi Builder
-Version:     1.2.3
-Author:      learnhowwp.com
-Author URI:  http://www.learnhowwp.com
+Plugin URI:  https://andreisim.com/
+Description: The plugin adds a new module, the Search By Post Type module
+Version:     1.0.0
+Author:      andreisim.com
+Author URI:  https://andreisim.com
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: lwp-divi-breadcrumbs
@@ -425,20 +425,3 @@ function lwp_divi_breadcrumbs_dependencies() {
 add_action( 'admin_notices', 'lwp_divi_breadcrumbs_dependencies' );
 
 endif; 
-
-if ( ! function_exists( 'lwp_breadcrumbs_add_icons' ) ):
-    add_filter( 'et_global_assets_list', 'lwp_breadcrumbs_add_icons', 10 );
-    function lwp_breadcrumbs_add_icons( $assets ) {
-        if ( isset( $assets['et_icons_all'] ) && isset( $assets['et_icons_fa'] ) ) {
-            return $assets;
-        }
-        $assets_prefix = et_get_dynamic_assets_path();
-        $assets['et_icons_all'] = array(
-            'css' => "{$assets_prefix}/css/icons_all.css",
-        );
-        $assets['et_icons_fa'] = array(
-            'css' => "{$assets_prefix}/css/icons_fa_all.css",
-        );
-        return $assets;
-    }
-    endif;
