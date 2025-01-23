@@ -1,6 +1,6 @@
 <?php
 
-class LWP_DiviBreadcrumbsClass extends DiviExtension {
+class DPTS_DiviSearchClass extends DiviExtension {
 
 	/**
 	 * The gettext domain for the extension's translations.
@@ -9,7 +9,7 @@ class LWP_DiviBreadcrumbsClass extends DiviExtension {
 	 *
 	 * @var string
 	 */
-	public $gettext_domain = 'lwp-divi-breadcrumbs';
+	public $gettext_domain = 'dpts-divi-search';
 
 	/**
 	 * The extension's WP Plugin name.
@@ -18,7 +18,7 @@ class LWP_DiviBreadcrumbsClass extends DiviExtension {
 	 *
 	 * @var string
 	 */
-	public $name = 'divi-breadcrumbs';
+	public $name = 'dpts-divi-search-module';
 
 	/**
 	 * The extension's version
@@ -27,15 +27,15 @@ class LWP_DiviBreadcrumbsClass extends DiviExtension {
 	 *
 	 * @var string
 	 */
-	public $version = '1.2.2';
+	public $version = '1.0.0';
 
 	/**
-	 * LWP_DiviBreadcrumbs constructor.
+	 * DPTS_DiviSearch constructor.
 	 *
 	 * @param string $name
 	 * @param array  $args
 	 */
-	public function __construct( $name = 'divi-breadcrumbs', $args = array() ) {
+	public function __construct( $name = 'dpts-divi-search-module', $args = array() ) {
 		$this->plugin_dir     = plugin_dir_path( __FILE__ );
 		$this->plugin_dir_url = plugin_dir_url( $this->plugin_dir );
 
@@ -43,4 +43,4 @@ class LWP_DiviBreadcrumbsClass extends DiviExtension {
 	}
 }
 
-new LWP_DiviBreadcrumbsClass;
+new DPTS_DiviSearchClass;
