@@ -9,7 +9,7 @@ class DPTS_DiviSearchClass extends DiviExtension {
 	 *
 	 * @var string
 	 */
-	public $gettext_domain = 'dpts-divi-search';
+	public $gettext_domain = 'dpts-search-for-Divi';
 
 	/**
 	 * The extension's WP Plugin name.
@@ -18,7 +18,7 @@ class DPTS_DiviSearchClass extends DiviExtension {
 	 *
 	 * @var string
 	 */
-	public $name = 'dpts-divi-search-module';
+	public $name = 'dpts-search-for-Divi-module';
 
 	/**
 	 * The extension's version
@@ -35,7 +35,7 @@ class DPTS_DiviSearchClass extends DiviExtension {
 	 * @param string $name
 	 * @param array  $args
 	 */
-	public function __construct( $name = 'dpts-divi-search-module', $args = array() ) {
+	public function __construct( $name = 'dpts-search-for-Divi-module', $args = array() ) {
 		$this->plugin_dir     = plugin_dir_path( __FILE__ );
 		$this->plugin_dir_url = plugin_dir_url( $this->plugin_dir );
 

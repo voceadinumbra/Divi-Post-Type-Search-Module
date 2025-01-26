@@ -10,7 +10,7 @@ class DPTS_DiviSearch extends ET_Builder_Module_Search {
 
 
 	public function init() {
-		$this->name = esc_html__( 'Post Types Search', 'dpts-divi-search' );
+		$this->name = esc_html__( 'Post Types Search', 'dpts-search-for-Divi' );
 		$this->icon = '=';
 		$this->main_css_element = '%%order_class%%';
 		$this->whitelisted_fields = array(
@@ -36,9 +36,9 @@ class DPTS_DiviSearch extends ET_Builder_Module_Search {
 
 		$fields = array(
 			'placeholder'        => array(
-				'label'           => esc_html__( 'Input Placeholder', 'dpts-divi-search' ),
+				'label'           => esc_html__( 'Input Placeholder', 'dpts-search-for-Divi' ),
 				'type'            => 'text',
-				'description'     => esc_html__( 'Type the text you want to use as placeholder for the search field.', 'dpts-divi-search' ),
+				'description'     => esc_html__( 'Type the text you want to use as placeholder for the search field.', 'dpts-search-for-Divi' ),
 				'toggle_slug'     => 'main_content',
 				'dynamic_content' => 'text',
 				'mobile_options'  => true,
@@ -50,11 +50,11 @@ class DPTS_DiviSearch extends ET_Builder_Module_Search {
 			 * Include The Post Type Options
 			 **/
 			'include_posttypes' => array(
-				'label'            => esc_html__( 'Include Post Types', 'et_builder' ),
+				'label'            => esc_html__( 'Include Post Types', 'dpts-search-for-Divi' ),
 				'type'             => 'multiple_checkboxes',
 				'option_category'  => 'basic_option',
 				'depends_show_if'  => 'off',
-				'description'      => esc_html__( 'Select the post types that you would like to include in the search. If none are selected, all post types will be included in the search.', 'et_builder' ),
+				'description'      => esc_html__( 'Select the post types that you would like to include in the search. If none are selected, all post types will be included in the search.', 'dpts-search-for-Divi' ),
 				'toggle_slug'      => 'main_content',
 			),
 		);
@@ -159,8 +159,8 @@ class DPTS_DiviSearch extends ET_Builder_Module_Search {
 					'', // #5
 					'', // #6
 					$placeholder, // #7
-					esc_html__( 'Search for:', 'et_builder' ), // #8
-					esc_attr__( 'Search', 'et_builder' ), // #9
+					esc_html__( 'Search for:', 'dpts-search-for-Divi' ), // #8
+					esc_attr__( 'Search', 'dpts-search-for-Divi' ), // #9
 					$video_background, // #10
 					$parallax_image_background, // #11
 					et_core_esc_previously( $data_background_layout ), // #12
