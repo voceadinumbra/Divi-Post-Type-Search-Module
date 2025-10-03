@@ -4,7 +4,7 @@ Plugin Name: Post Type Search Module for Divi
 Plugin URI:  https://wpwebaid.com/
 Description: The plugin adds a new module, the Search By Post Type module
 Version:     1.0.0
-Author:      andreisim.com
+Author:      wpwebaid.com
 Author URI:  https://wpwebaid.com
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -40,10 +40,7 @@ if ( ! function_exists( 'dpts_initialize_extension' ) )
 }
 
 
-if ( ! function_exists( 'dpts_get_custom_post_type_search' ) ){
-
-add_action( 'wp_ajax_dpts_get_custom_post_type_search', 'dpts_get_custom_post_type_search' );
-add_action( 'wp_ajax_nopriv_dpts_get_custom_post_type_search', 'dpts_get_custom_post_type_search' );
+if ( ! function_exists( 'dpts_custom_search_posttype_filter' ) ){
 
 // Hook into pre_get_posts with high priority to override other plugins
 add_action('pre_get_posts', 'dpts_custom_search_posttype_filter', 1);
@@ -57,9 +54,11 @@ function dpts_custom_search_posttype_filter( $query )
     if ( ! is_admin() && $query->is_search() ) {
         
         // Check if we have a post type parameter
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Search parameters are public GET requests
         if ( isset( $_GET['posttype_search'] ) && ! empty( $_GET['posttype_search'] ) ) {
             
             // Sanitize the post type parameter
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Search parameters are public GET requests
             $posttype_search = sanitize_text_field( wp_unslash( $_GET['posttype_search'] ) );
             
             // Convert comma-separated string to array
@@ -95,7 +94,9 @@ function dpts_custom_search_posttype_filter_backup( $query )
 {
     // Backup function in case the first one doesn't work
     if ( ! is_admin() && $query->is_search() ) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Search parameters are public GET requests
         if ( isset( $_GET['posttype_search'] ) && ! empty( $_GET['posttype_search'] ) ) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Search parameters are public GET requests
             $posttype_search = sanitize_text_field( wp_unslash( $_GET['posttype_search'] ) );
             $posttype_array = array_map( 'trim', explode( ',', $posttype_search ) );
             $valid_post_types = array();
@@ -118,9 +119,11 @@ add_filter( 'posts_where', 'dpts_modify_search_where', 10, 2 );
 
 function dpts_modify_search_where( $where, $query ) {
     if ( ! is_admin() && $query->is_search() && $query->is_main_query() ) {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Search parameters are public GET requests
         if ( isset( $_GET['posttype_search'] ) && ! empty( $_GET['posttype_search'] ) ) {
             global $wpdb;
             
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Search parameters are public GET requests
             $posttype_search = sanitize_text_field( wp_unslash( $_GET['posttype_search'] ) );
             $posttype_array = array_map( 'trim', explode( ',', $posttype_search ) );
             $valid_post_types = array();
@@ -139,22 +142,6 @@ function dpts_modify_search_where( $where, $query ) {
     }
     
     return $where;
-}
-
-function dpts_get_custom_post_type_search()
-{
-    $post_id = 0;      
-
-    if ( isset( $_POST['post_id'] ) && is_numeric( $_POST['post_id'] ) ) {
-        $post_id = intval( sanitize_text_field( wp_unslash( $_POST['post_id'] ) ) );
-    }                
-
-    $result = array(
-        'title' => get_the_title( $post_id ),
-        'html'  => ( function_exists( 'dpts_divi_search' ) ) ? dpts_divi_search() : ''
-    );
-    
-    wp_send_json( $result );
 }
 
 if ( ! function_exists( 'dpts_divi_module_dependencies' ) )
